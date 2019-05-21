@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.2.RELEASE</version>
+		<version>1.5.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	  
@@ -16,7 +16,7 @@
   	<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<java.version>1.8</java.version>
-  	<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+  	<spring-cloud.version>Dalston.SR1</spring-cloud.version>
   </properties>
   
   <build>
@@ -45,7 +45,7 @@
            <dependency>
                <groupId>org.springframework.cloud</groupId>
                <artifactId>spring-cloud-dependencies</artifactId>
-               <version>Greenwich.RELEASE</version>
+               <version>Dalston.SR1</version>
                <type>pom</type>
                <scope>import</scope>
            </dependency>
@@ -67,31 +67,44 @@
 		    <version>1.1.16</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
 		<dependency>
-		    <groupId>log4j</groupId>
-		    <artifactId>log4j</artifactId>
-		    <version>1.2.17</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-nop</artifactId>
-		    <version>1.7.24</version>
-	    </dependency>
-		
-		
-		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
 		<dependency>
 		    <groupId>ch.qos.logback</groupId>
 		    <artifactId>logback-classic</artifactId>
 		    <version>1.2.3</version>
-		    <scope>test</scope>
+		    <scope>runtime</scope>
+		    <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
+        
+        
+        <dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		</dependency>
+		
 		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
+			<!-- 移除springboot默认的logback日志 
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+			-->
 		</dependency>
 		
 		<dependency>
