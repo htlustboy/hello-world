@@ -5,7 +5,6 @@ import java.util.Date;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -25,5 +24,6 @@ public class EurekaApplication
     	SpringApplication.run(EurekaApplication.class, args);
     	
     	log.info("Eureka Servce Start Success>>>>>>>>>>>>>>>>>>>>");
+    	
     }
 }
