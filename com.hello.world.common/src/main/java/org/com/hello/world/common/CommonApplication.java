@@ -4,7 +4,7 @@ package org.com.hello.world.common;
  * Hello world!
  *
  */
-public class App 
+public class CommonApplication 
 {
     public static void main( String[] args )
     {
