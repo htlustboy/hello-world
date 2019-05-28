@@ -18,7 +18,7 @@
   
   <dependencies>
   
-<<<<<<< HEAD
+
 	<dependency>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-eureka</artifactId>
@@ -28,13 +28,13 @@
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-feign</artifactId>
 	</dependency>  
-=======
+
    	<dependency>
 		<groupId>com.hello.world.common</groupId>
 		<artifactId>com.hello.world.common</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
 	
->>>>>>> ce13832b610675c27c25d042b284522af774da51
+
   </dependencies>
 </project>

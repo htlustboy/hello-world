@@ -1,4 +1,4 @@
-package org.com.hello.world.common.base.util;
+package org.com.hello.world.userServer.util;
 
 import java.util.List;
 import java.util.Map;
@@ -9,14 +9,14 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * redis工具类
  * @author ht
  *
  */
-@Service("redisUtil")
+@Component
 public class RedisUtil {
 	
 	
