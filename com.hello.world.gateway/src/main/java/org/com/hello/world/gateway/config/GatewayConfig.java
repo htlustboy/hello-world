@@ -60,7 +60,7 @@ public class GatewayConfig implements ZuulFallbackProvider{
 
 	@Override
 	public String getRoute() {
-		return "sorry...service error!";
+		return "user-service";
 	}
 	
 	

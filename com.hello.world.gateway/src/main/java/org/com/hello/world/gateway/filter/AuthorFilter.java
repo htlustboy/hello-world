@@ -32,13 +32,13 @@ public class AuthorFilter extends ZuulFilter{
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		String authorToken = request.getHeader("author-token");
-		if(StringUtils.isBlank(authorToken)){
-			log.warn("用户未登陆，没有权限！");
-			ctx.getResponse().setContentType("text/html;charset=UTF-8");
-			ctx.setSendZuulResponse(false);
-			ctx.setResponseStatusCode(800);
-			ctx.setResponseBody("用户没有权限！");
-		}
+//		if(StringUtils.isBlank(authorToken)){
+//			log.warn("用户未登陆，没有权限！");
+//			ctx.getResponse().setContentType("text/html;charset=UTF-8");
+//			ctx.setSendZuulResponse(false);
+//			ctx.setResponseStatusCode(800);
+//			ctx.setResponseBody("用户没有权限！");
+//		}
 		log.info("当前登陆用户："+authorToken);
 		return null;
 	}

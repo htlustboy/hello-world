@@ -1,6 +1,5 @@
 package org.com.hello.world.userServer;
 
-import javax.annotation.Resource;
 
 import org.com.hello.world.common.base.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
