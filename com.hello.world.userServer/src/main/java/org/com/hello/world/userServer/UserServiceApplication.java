@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author ht
  *
  */
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages={"org.com.hello.world"},exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 @EnableEurekaClient
 @Slf4j
 @RestController
