@@ -41,10 +41,10 @@ public class UserServerConfig {
 	@Bean
 	public DataSource getDataSource() {
 		Properties properties = new Properties();
-		properties.setProperty("driverClassName", "spring.datasource.driver-class-name");
-		properties.setProperty("url", "spring.datasource.url");
-		properties.setProperty("username", "spring.datasource.username");
-		properties.setProperty("password", "spring.datasource.password");
+		properties.setProperty("driverClassName", environment.getProperty("spring.datasource.driver-class-name"));
+		properties.setProperty("url", environment.getProperty("spring.datasource.url"));
+		properties.setProperty("username", environment.getProperty("spring.datasource.username"));
+		properties.setProperty("password", environment.getProperty("spring.datasource.password"));
 		DataSource dataSource = null;
 		try {
 			dataSource = DruidDataSourceFactory.createDataSource(properties);
@@ -81,17 +81,17 @@ public class UserServerConfig {
 	 * 配置redis缓存,获取缓存池
 	 * @return
 	 */
-	@Bean(name="jedisPool")
-	public JedisPool getJedisPool(){
-		JedisPoolConfig config = new JedisPoolConfig();
-		config.setMaxTotal(Integer.parseInt(environment.getProperty("redis.maxtotal")));
-		config.setMaxIdle(Integer.parseInt(environment.getProperty("redis.maxidle")));
-		config.setMaxWaitMillis(Long.parseLong(environment.getProperty("redis.maxwaitmillis")));
-		String host = environment.getProperty("redis.address");
-		int port = Integer.parseInt(environment.getProperty("redis.port"));
-		log.info("获取redis缓存池-----------------------------------------------------------------------------------");
-		return new JedisPool(config, host, port,3000);
-	}
+//	@Bean(name="jedisPool")
+//	public JedisPool getJedisPool(){
+//		JedisPoolConfig config = new JedisPoolConfig();
+//		config.setMaxTotal(Integer.parseInt(environment.getProperty("redis.maxtotal")));
+//		config.setMaxIdle(Integer.parseInt(environment.getProperty("redis.maxidle")));
+//		config.setMaxWaitMillis(Long.parseLong(environment.getProperty("redis.maxwaitmillis")));
+//		String host = environment.getProperty("redis.address");
+//		int port = Integer.parseInt(environment.getProperty("redis.port"));
+//		log.info("获取redis缓存池-----------------------------------------------------------------------------------");
+//		return new JedisPool(config, host, port,3000);
+//	}
 	
 	/**
 	 * 初始化redis
@@ -111,11 +111,11 @@ public class UserServerConfig {
 	 * 注册自己的Servlet
 	 * @return
 	 */
-	@Bean
-	public ServletRegistrationBean servletRegistrationBean(){
-		log.info("初始化Servlet-------------------------------------------------------------------------------------");
+//	@Bean
+//	public ServletRegistrationBean servletRegistrationBean(){
+//		log.info("初始化Servlet-------------------------------------------------------------------------------------");
 //		return new ServletRegistrationBean(new ValidServlet(), "/valid/*");
-		return null;
-	}
+//		return null;
+//	}
 	
 }
