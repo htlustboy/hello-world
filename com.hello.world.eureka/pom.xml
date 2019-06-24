@@ -9,7 +9,6 @@
   </parent>
   <groupId>com.hello.world.eureka</groupId>
   <artifactId>com.hello.world.eureka</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>com.hello.world.eureka</name>
   <url>http://maven.apache.org</url>
   <properties>
