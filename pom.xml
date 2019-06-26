@@ -74,11 +74,11 @@
 		    <version>3.4.6</version>
 		</dependency>
 		
-		<dependency>
-	       <groupId>org.mybatis</groupId>
-	       <artifactId>mybatis-spring</artifactId>
-	       <version>1.2.2</version>
-	    </dependency>  
+<!-- 		<dependency> -->
+<!-- 	       <groupId>org.mybatis</groupId> -->
+<!-- 	       <artifactId>mybatis-spring</artifactId> -->
+<!-- 	       <version>1.2.2</version> -->
+<!-- 	    </dependency>   -->
 		
 		
 		<dependency>
