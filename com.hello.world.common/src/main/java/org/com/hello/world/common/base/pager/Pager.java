@@ -16,7 +16,7 @@ public class Pager implements Serializable{
 	private Integer totalItems;
 	private List<?> result;
 	private HashMap<String, Object> searchInfo;
-	private boolean isAllResult;
+	private boolean isAllResult = false;
 	
 	public Integer getPageNo() {
 		return (pageNo==null || pageNo>=Integer.MAX_VALUE)?1:pageNo;
