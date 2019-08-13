@@ -1,4 +1,4 @@
-package org.com.hello.world.userServer;
+package com.hello.world.userServer;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

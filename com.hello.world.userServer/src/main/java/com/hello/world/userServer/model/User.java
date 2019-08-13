@@ -3,6 +3,8 @@ package com.hello.world.userServer.model;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 import com.hello.world.common.base.model.BaseModel;
 
 import lombok.Data;
@@ -15,6 +17,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain=true)
 @Table(name="hw_user")
+@Component
 public class User extends BaseModel{
 	
 	@Column(name="username")
@@ -41,8 +44,8 @@ public class User extends BaseModel{
 	@Column(name="city")
 	private String city;
 	
-	@Column(name="distinct")
-	private String distinct;
+	@Column(name="distincts")
+	private String distincts;
 	
 	@Column(name="address")
 	private String address;

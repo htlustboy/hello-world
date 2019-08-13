@@ -22,11 +22,6 @@
 		<artifactId>spring-cloud-starter-eureka-server</artifactId>
 	</dependency>    
 	
-	<dependency>
-		<groupId>com.hello.world.common</groupId>
-		<artifactId>com.hello.world.common</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
 
   </dependencies>
 </project>

@@ -11,15 +11,36 @@
  		<result column="country" property="country"/>
  		<result column="province" property="province"/>
  		<result column="city" property="city"/>
- 		<result column="distinct" property="distinct"/>
+ 		<result column="distincts" property="distincts"/>
  		<result column="address" property="address"/>
  		<result column="age" property="age"/>
  		<result column="sex" property="sex"/>
  		<result column="level" property="level"/>
+ 		<result column="is_enable" property="isEnable"/>
+ 		<result column="is_delete" property="isDelete"/>
+ 		<result column="version" property="version"/>
+ 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+ 		<result column="create_user" property="createUser"/>
+ 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+ 		<result column="update_user" property="updateUser"/>
  	</resultMap>
  	
  	<!-- 根据id查询用户 -->
- 	<select id="getUserById" resultMap="userMapper">
+ 	<select id="getUserById" resultMap="userMapper" parameterType="java.lang.String">
  		select * from ht_user t where 1=1 and t.id = #{id}
  	</select>
+ 	
+ 	<!-- 创建用户 -->
+ 	<insert id="createUser" parameterType="com.hello.world.userServer.model.User">
+ 		insert into ht_user (username,password,display_name,email,phone,country,province,city,distincts,address,age,sex,level,is_enable,
+ 		is_delete,version,create_time,create_user,update_time,update_user) 
+ 		values(#{user.username},#{user.password},#{user.displayName},#{user.email},#{user.phone},#{user.country},
+ 		#{user.province},#{user.city},#{user.distincts},#{user.address},
+ 		#{user.age},#{user.sex},#{user.level},#{user.isEnable},#{user.isDelete},#{user.version},
+ 		#{user.createTime},#{user.createUser},#{user.updateTime},#{user.updateUser})
+ 	</insert>
+ 	
+ 	<delete id="deleteUser">
+ 		delete from ht_user where 1=1 and id=#{id}
+ 	</delete>
 </mapper>

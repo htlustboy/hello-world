@@ -19,8 +19,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import lombok.extern.slf4j.Slf4j;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * 配置类
@@ -52,7 +50,7 @@ public class UserServerConfig {
 			e.printStackTrace();
 			log.error("=============================:数据库连接失败" + e.getMessage());
 		}
-		log.debug("=================================:数据库连接成功！" + dataSource);
+		log.info("=================================:数据库连接成功！" + dataSource);
 		return dataSource;
 		
 	}
@@ -69,7 +67,7 @@ public class UserServerConfig {
 		sqlSessionFactoryBean.setTypeAliasesPackage(environment.getProperty("mybatis.typeAliasesPackage"));
 		try {
 			sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(environment.getProperty("mybatis.mapperLocations")));
-			log.debug("=============================:sqlSessionFactory创建成功");
+			log.info("=============================:sqlSessionFactory创建成功");
 			return sqlSessionFactoryBean.getObject();
 		} catch (Exception e) {
 			e.printStackTrace();
