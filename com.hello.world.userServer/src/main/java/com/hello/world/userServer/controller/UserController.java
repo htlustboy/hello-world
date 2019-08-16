@@ -2,6 +2,7 @@ package com.hello.world.userServer.controller;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class UserController extends BaseController{
 	@Resource
 	private UserService userService;
 	
+
 	@RequestMapping("/getUser")
 	public User getUser(){
 		String id = this.getRequest().getParameter("id");
@@ -32,8 +34,13 @@ public class UserController extends BaseController{
 		return user;
 	}
 	
+	
 	@RequestMapping("/createUser")
 	public String createUser() {
+		String id =  userService.queryIdByUserName("hutao");
+		if(StringUtils.isNoneBlank(id)) {
+			return "error:the user is exits !";
+		}
 		userService.createUser();
 		return "success";
 	}

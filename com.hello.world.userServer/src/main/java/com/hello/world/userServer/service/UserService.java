@@ -48,5 +48,14 @@ public class UserService {
 	public int deleteUser(String id) {
 		return userMapper.deleteUser(id);
 	}
+
+	/**
+	 * 验证用户名是否被占用
+	 * @param username
+	 * @return
+	 */
+	public String queryIdByUserName(String username) {
+		return userMapper.queryIdByUserName(username);
+	}
 	
 }
