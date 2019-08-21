@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,8 +15,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain=true)
 public abstract class AbstractModel implements Serializable{
 	
-	@Id
-	@Column(name="id")
+	@TableId(value = "id",type = IdType.AUTO)
 	private Long id;
 	
 	@Column(name="create_time")

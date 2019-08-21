@@ -5,6 +5,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.hello.world.common.base.model.BaseModel;
 
 import lombok.Data;
@@ -16,7 +17,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain=true)
-@Table(name="hw_user")
+@TableName(value = "ht_user")
 @Component
 public class User extends BaseModel{
 	

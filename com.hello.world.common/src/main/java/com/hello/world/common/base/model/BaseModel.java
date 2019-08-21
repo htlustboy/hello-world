@@ -3,7 +3,8 @@ package com.hello.world.common.base.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Version;
+
+import com.baomidou.mybatisplus.annotations.Version;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

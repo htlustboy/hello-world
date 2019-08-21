@@ -50,4 +50,18 @@ public class UserController extends BaseController{
 		String id = this.getRequest().getParameter("id");
 		return userService.deleteUser(id);
 	}
+	
+	@RequestMapping("/updateUser")
+	public String updateUser() {
+		String id = this.getRequest().getParameter("id");
+		if(StringUtils.isBlank(id)) {
+			return "error:id不能为null!";
+		}
+		try {
+			String result = userService.updateById(id);
+			return result;
+		} catch (Exception e) {
+			return "error";
+		}
+	}
 }

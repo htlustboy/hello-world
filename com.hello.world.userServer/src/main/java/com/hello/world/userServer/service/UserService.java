@@ -57,5 +57,21 @@ public class UserService {
 	public String queryIdByUserName(String username) {
 		return userMapper.queryIdByUserName(username);
 	}
+
+	/**
+	 * 更新用户
+	 * @param id
+	 * @return
+	 */
+	public String updateById(String id) {
+		try {
+			User user = getUserById(id);
+			user.setUsername("ping");
+			int result = userMapper.updateById(user);
+			return result==1?"success":"error";
+		} catch (Exception e) {
+			return e.getMessage();	 
+		}
+	}
 	
 }

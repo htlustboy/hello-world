@@ -174,7 +174,7 @@
    	<module>com.hello.world.security</module>
    	<module>com.hello.world.userServer</module>
     <module>com.hello.world.orderServer</module>
-    <module>logServer</module>
     <module>com.hello.world.logServer</module>
-  </modules>
+    <module>com.hello.world.configServer</module>
+   </modules>
 </project>

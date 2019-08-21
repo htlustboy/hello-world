@@ -47,4 +47,5 @@
  	<select id="queryIdByUserName" resultType="java.lang.String">
  		select id from ht_user where 1=1 and username = #{username}
  	</select>
+ 	
 </mapper>

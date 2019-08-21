@@ -1,30 +1,30 @@
-package com.hello.world.logServer.controller;
+package org.com.hello.world.configServer.controller;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hello.world.common.base.controller.BaseController;
+import com.alibaba.druid.util.StringUtils;
 
 @RestController
-@RequestMapping("/log")
-public class LogController extends BaseController{
-	
+@RequestMapping("/config")
+public class ConfigController {
+
 	@Resource
 	private Environment environment;
 	
-	@RequestMapping("/logTest")
-	public String test(@RequestParam("key")String key) {
+	@RequestMapping("/getKey")
+	public String getProperties(@RequestParam("key")String key) {
 		try {
 			String result = environment.getProperty(key);
-			if(StringUtils.isBlank(result)) {
-				throw new Exception("KEY 不存在...");
+			if(StringUtils.isEmpty(result)) {
+				throw new Exception("key 不存在！");
+			}else {
+				return result;
 			}
-			return result;
 		} catch (Exception e) {
 			return e.getMessage();
 		}

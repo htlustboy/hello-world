@@ -5,18 +5,18 @@ import java.util.Properties;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.apache.ibatis.plugin.Interceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
+import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
+import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author taohu
  *
  */
+@EnableTransactionManagement
 @Configuration
 @Slf4j
 public class UserServerConfig {
@@ -60,21 +61,37 @@ public class UserServerConfig {
 	 * @return
 	 */
 	@Bean
-	public SqlSessionFactory getSqlSessionFactory(DataSource dataSource) {
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+	public MybatisSqlSessionFactoryBean getSqlSessionFactory(DataSource dataSource) {
+		MybatisSqlSessionFactoryBean  sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean ();
 		sqlSessionFactoryBean.setDataSource(dataSource);
-		sqlSessionFactoryBean.setConfigLocation(new DefaultResourceLoader().getResource(environment.getProperty("mybatis.config")));
-		sqlSessionFactoryBean.setTypeAliasesPackage(environment.getProperty("mybatis.typeAliasesPackage"));
+		sqlSessionFactoryBean.setConfigLocation(new DefaultResourceLoader().getResource(environment.getProperty("mybatis-plus.config")));
+		sqlSessionFactoryBean.setTypeAliasesPackage(environment.getProperty("mybatis-plus.typeAliasesPackage"));
+		//mybatis-plus拦截器生效配置
+		sqlSessionFactoryBean.setPlugins(new Interceptor[]{new OptimisticLockerInterceptor()});
 		try {
-			sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(environment.getProperty("mybatis.mapperLocations")));
+			sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(environment.getProperty("mybatis-plus.mapperLocations")));
 			log.info("=============================:sqlSessionFactory创建成功");
-			return sqlSessionFactoryBean.getObject();
+			return sqlSessionFactoryBean;
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("=============================:sqlSessionFactory创建失败:" + e.getMessage());
 		}
 		return null;
 	}
+	
+	/**
+	 * mybatis乐观锁插件
+	 * @return
+	 */
+	@Bean
+	public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+		return new OptimisticLockerInterceptor();
+	}
+	
+	@Bean
+    public PerformanceInterceptor performanceInterceptor(){
+        return new PerformanceInterceptor();
+    }
 	
 	/**
 	 * 配置redis缓存,获取缓存池

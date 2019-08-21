@@ -2,8 +2,7 @@ package com.hello.world.gateway.filter;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
@@ -26,22 +25,25 @@ public class AuthorFilter extends ZuulFilter{
 	 */
 	@Override
 	public Object run() {
-		log.info("验证权限，开始......");
+		log.info("Zuul验证权限，开始......");
 		
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		String authorToken = request.getHeader("author-token");
-//		if(StringUtils.isBlank(authorToken)){
-//			log.warn("用户未登陆，没有权限！");
-//			ctx.getResponse().setContentType("text/html;charset=UTF-8");
-//			ctx.setSendZuulResponse(false);
-//			ctx.setResponseStatusCode(800);
-//			ctx.setResponseBody("用户没有权限！");
-//		}
+		if(StringUtils.isBlank(authorToken)){
+			log.warn("用户未登陆，没有权限！");
+			ctx.getResponse().setContentType("text/html;charset=UTF-8");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(800);
+			ctx.setResponseBody("用户没有权限！");
+		}
 		log.info("当前登陆用户："+authorToken);
 		return null;
 	}
 
+	/**
+	 *控制过滤器是否生效，可以写一串逻辑进行控制
+	 */
 	@Override
 	public boolean shouldFilter() {
 		return true;
@@ -52,11 +54,14 @@ public class AuthorFilter extends ZuulFilter{
 	 */
 	@Override
 	public int filterOrder() {
-		return 1;
+		return 0;
 	}
 
 	/* 
-	 * "pre","post","routing","error"
+	 * "pre" ：主要用在路由映射的阶段寻找路由映射表
+	 * "post"：当routing，error运行完后才会调用该过滤器，实在最后阶段
+	 * "routing"：具体的路由转发过滤器是routing路由器，具体的请求转发的时候会调用
+	 * "error"：一旦前面的过滤器出错了，才会调用error过滤器
 	 */
 	@Override
 	public String filterType() {
